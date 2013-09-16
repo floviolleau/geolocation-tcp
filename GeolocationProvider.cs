@@ -90,7 +90,7 @@ namespace GeolocationTCP
                     String sentence = String.Format("$GPRMC,{0},A,{1},{2},{3},{4},,", 
                         time, coords, speed, heading, date);
                     String nmea = sentence + "*" + getChecksum(sentence);
-                    //Console.WriteLine("Connected, sending NMEA string {0}", nmea);
+                    Console.WriteLine("Sent NMEA sentence {0}", nmea);
                     
                     //FIXME from time to time throws ObjectDisposed
                     Boolean written = state.Write(Encoding.UTF8.GetBytes(nmea), 0, nmea.Length);
@@ -113,7 +113,7 @@ namespace GeolocationTCP
         }
         public override void OnAcceptConnection(ConnectionState state)
         {
-            Console.WriteLine("connection accepted");
+            //Console.WriteLine("connection accepted");
             StartTracking(state);
         }
 

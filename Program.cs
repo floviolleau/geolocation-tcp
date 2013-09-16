@@ -18,6 +18,7 @@ namespace GeolocationTCP
             provider = new GeolocationProvider();
             server = new TcpServer(provider, 15555);
             server.Start();
+            Console.WriteLine("Press any key to exit...");
             Console.ReadKey();
         }
 
