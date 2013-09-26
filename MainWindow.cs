@@ -25,7 +25,7 @@ namespace GeolocationTCP
             trayMenu.MenuItems.Add("Exit", OnExit);
             trayIcon = new NotifyIcon();
             trayIcon.Text = "Geolocation TCP";
-            trayIcon.Icon = new Icon(SystemIcons.Information, 40, 40);
+            trayIcon.Icon = new Icon(GetType(), "location.ico");
             trayIcon.Click += new EventHandler(OnTrayIconClick);
             trayIcon.Visible = true;
             trayIcon.ContextMenu = trayMenu;
@@ -114,7 +114,7 @@ namespace GeolocationTCP
             }
             else
             {
-                this.locationLog.AppendText(text);
+                this.locationLog.AppendText(text + Environment.NewLine);
             }
         }
 
@@ -133,8 +133,8 @@ namespace GeolocationTCP
             double lngm = (lnga - lngd) * 60;
             string lngh = lon > 0 ? "E" : "W";
 
-            string latitude = latd.ToString("00") + deg + latm.ToString(" 00.00") + "'" + lath;
-            string longitude = lngd.ToString("000") + deg + lngm.ToString(" 00.00") + "' " + lath;
+            string latitude = latd.ToString("00") + deg + latm.ToString(" 00.00") + "' " + lath;
+            string longitude = lngd.ToString("000") + deg + lngm.ToString(" 00.00") + "' " + lngh;
 
             SetLat(latitude);
             SetLon(longitude);
@@ -191,6 +191,38 @@ namespace GeolocationTCP
             {
                 this.labelDate.Text = text;
             }
+        }
+
+        internal void SetStatus(string text)
+        {
+            if (this.labelStatus.InvokeRequired)
+            {
+                SetTextCallback d = new SetTextCallback(SetStatus);
+                this.Invoke(d, new object[] { text });
+            }
+            else
+            {
+                this.labelStatus.Text = text;
+            }
+        }
+
+
+        internal void SetAccuracy(string text)
+        {
+            if (this.labelAccuracy.InvokeRequired)
+            {
+                SetTextCallback d = new SetTextCallback(SetAccuracy);
+                this.Invoke(d, new object[] { text });
+            }
+            else
+            {
+                this.labelAccuracy.Text = text;
+            }
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

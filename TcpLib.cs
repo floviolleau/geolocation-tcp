@@ -100,18 +100,13 @@ namespace TcpLib
     /// </SUMMARY>
     public abstract class TcpServiceProvider : ICloneable
     {
-        protected System.Windows.Forms.Form _window;
+
         /// <SUMMARY>
         /// Provides a new instance of the object.
         /// </SUMMARY>
         public virtual object Clone()
         {
             throw new Exception("Derived clases must override Clone method.");
-        }
-
-        public virtual void SetWindow(System.Windows.Forms.Form w)
-        {
-            _window = w;
         }
 
         /// <SUMMARY>
@@ -136,6 +131,7 @@ namespace TcpLib
     public class TcpServer
     {   
         private System.Windows.Forms.Form _window;
+        private GeolocationTCP.Locator _locator;
         private int _port;
         private Socket _listener;
         private TcpServiceProvider _provider;
@@ -166,6 +162,10 @@ namespace TcpLib
             _window = w;
         }
 
+        public void SetLocator(GeolocationTCP.Locator loc)
+        {
+            _locator = loc;
+        }
         /// <SUMMARY>
         /// Start accepting connections.
         /// A false return value tell you that the port is not available.
@@ -210,7 +210,7 @@ namespace TcpLib
                     st._conn = conn;
                     st._server = this;
                     st._provider = (TcpServiceProvider)_provider.Clone();
-                    st._provider.SetWindow(_window);
+                    _locator.SetProvider(st._provider);
                     st._buffer = new byte[4];
                     _connections.Add(st);
                     //Queue the rest of the job to be executed latter
