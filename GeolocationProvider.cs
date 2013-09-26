@@ -14,6 +14,9 @@ namespace GeolocationTCP
     {
         private Geolocator loc = null;
         private TypedEventHandler<Geolocator, PositionChangedEventArgs> positionChangedHandler;
+        private TypedEventHandler<Geolocator, StatusChangedEventArgs> statusChangedHandler;
+
+        private MainWindow window = null;
 
         public GeolocationProvider()
         {
@@ -27,6 +30,10 @@ namespace GeolocationTCP
             return new GeolocationProvider();
         }
 
+        public override void SetWindow(System.Windows.Forms.Form w)
+        {
+            window = (MainWindow) w;
+        }
         /// <SUMMARY>
         /// Calculates NMEA sentence checksum.
         /// Expects NMEA sentence including $.
@@ -57,15 +64,17 @@ namespace GeolocationTCP
             nmea += latd.ToString("00") + latm.ToString("00.00") + "," + lath + ",";
             nmea += lngd.ToString("000") + lngm.ToString("00.00") + "," + lngh;
 
-            return nmea;
+            return nmea; 
         }
 
         public void StartTracking(ConnectionState state)
-        {
+        {   
+            
             if (positionChangedHandler == null)
             {
                 positionChangedHandler = (geo, e) =>
-                {
+                {   
+                    
                     Geoposition pos = e.Position;
                     String time = pos.Coordinate.Timestamp.UtcDateTime.ToString("hhmmss");
                     String date = pos.Coordinate.Timestamp.UtcDateTime.ToString("dMMyy");
@@ -90,11 +99,12 @@ namespace GeolocationTCP
                     String sentence = String.Format("$GPRMC,{0},A,{1},{2},{3},{4},,", 
                         time, coords, speed, heading, date);
                     String nmea = sentence + "*" + getChecksum(sentence);
-                    Console.WriteLine("Sent NMEA sentence {0}", nmea);
+                    //Console.WriteLine("Sent NMEA sentence {0}", nmea);
+                    
                     
                     //FIXME from time to time throws ObjectDisposed
-                    Boolean written = state.Write(Encoding.UTF8.GetBytes(nmea), 0, nmea.Length);
-                    //if (!written)
+                    Boolean sent = state.Write(Encoding.UTF8.GetBytes(nmea), 0, nmea.Length);
+                    //if (!sent)
                     //{
                     //    try
                     //    {
@@ -105,11 +115,25 @@ namespace GeolocationTCP
                     //        Console.WriteLine(ex.ToString());
                     //    }
                     //}
+                    window.SetLocationLog(date + " on " + time+ "\n" + nmea+"\n");
+                    window.SetLocationLog(lat.ToString() + ", " + lon.ToString());
+                    window.SetLatLon(lat, lon);
+                    window.SetSpeed(speed);
+                    window.SetDatetime(pos.Coordinate.Timestamp.UtcDateTime.ToString());
                 };
             }
 
+
+            if (statusChangedHandler == null)
+            {
+                statusChangedHandler = (geo, e) =>
+                {
+
+                };
+            }
             // this implicitly starts the tracking operation
             loc.PositionChanged += positionChangedHandler;
+            loc.StatusChanged += statusChangedHandler;
         }
         public override void OnAcceptConnection(ConnectionState state)
         {

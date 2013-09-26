@@ -100,12 +100,18 @@ namespace TcpLib
     /// </SUMMARY>
     public abstract class TcpServiceProvider : ICloneable
     {
+        protected System.Windows.Forms.Form _window;
         /// <SUMMARY>
         /// Provides a new instance of the object.
         /// </SUMMARY>
         public virtual object Clone()
         {
             throw new Exception("Derived clases must override Clone method.");
+        }
+
+        public virtual void SetWindow(System.Windows.Forms.Form w)
+        {
+            _window = w;
         }
 
         /// <SUMMARY>
@@ -128,7 +134,8 @@ namespace TcpLib
 
 
     public class TcpServer
-    {
+    {   
+        private System.Windows.Forms.Form _window;
         private int _port;
         private Socket _listener;
         private TcpServiceProvider _provider;
@@ -154,6 +161,10 @@ namespace TcpLib
             ReceivedDataReady = new AsyncCallback(ReceivedDataReady_Handler);
         }
 
+        public void SetWindow(System.Windows.Forms.Form w)
+        {
+            _window = w;
+        }
 
         /// <SUMMARY>
         /// Start accepting connections.
@@ -199,6 +210,7 @@ namespace TcpLib
                     st._conn = conn;
                     st._server = this;
                     st._provider = (TcpServiceProvider)_provider.Clone();
+                    st._provider.SetWindow(_window);
                     st._buffer = new byte[4];
                     _connections.Add(st);
                     //Queue the rest of the job to be executed latter
