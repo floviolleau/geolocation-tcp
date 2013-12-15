@@ -56,7 +56,7 @@ namespace GeolocationTCP
             double lnga = Math.Abs(lon);
             double lngd = Math.Truncate(lnga);
             double lngm = (lnga - lngd) * 60;
-            string lngh = lon > 0 ? "E" : "W";
+            string lngh = lon > 0.0 ? "E" : "W";
 
             nmea += latd.ToString("00") + latm.ToString("00.00") + "," + lath + ",";
             nmea += lngd.ToString("000") + lngm.ToString("00.00") + "," + lngh;
@@ -125,7 +125,7 @@ namespace GeolocationTCP
                     String speed = "";
                     if (pos.Coordinate.Speed != null)
                     {
-                        double kn = pos.Coordinate.Speed.Value * 0.514444;
+                        double kn = (double) pos.Coordinate.Speed / 0.514444;
                         speed = kn.ToString("00.00");
                     }
 
