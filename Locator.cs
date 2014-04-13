@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -48,6 +49,7 @@ namespace GeolocationTCP
 
         public String decimalToNMEA(double lat, double lon)
         {
+            NumberFormatInfo nfi = new CultureInfo("en-US", false).NumberFormat;
             string nmea = "";
             double lata = Math.Abs(lat);
             double latd = Math.Truncate(lata);
@@ -57,10 +59,8 @@ namespace GeolocationTCP
             double lngd = Math.Truncate(lnga);
             double lngm = (lnga - lngd) * 60;
             string lngh = lon > 0.0 ? "E" : "W";
-
-            nmea += latd.ToString("00") + latm.ToString("00.00") + "," + lath + ",";
-            nmea += lngd.ToString("000") + lngm.ToString("00.00") + "," + lngh;
-
+            nmea += latd.ToString("00") + latm.ToString("00.00", nfi) + "," + lath + ",";
+            nmea += lngd.ToString("000") + lngm.ToString("00.00", nfi) + "," + lngh;
             return nmea;
         }
 
