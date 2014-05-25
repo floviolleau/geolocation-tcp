@@ -6,7 +6,7 @@ I have tested the server on my shiny new Asus VivoTab Smart.
 Feedback is most welcome.
 
 # How to use
-1. Download [GeolocationTCP-r5.exe](https://bitbucket.org/petrsimon/geolocationtcp/downloads/GeolocationTCP-r5.exe). You might also need [GeolocationTCP.exe.config](https://bitbucket.org/petrsimon/geolocationtcp/downloads/GeolocationTCP.exe.config). Place it in the same directory as `GeolocationTCP-r5.exe`. Start the program.
+1. Download [GeolocationTCP-r6.exe](https://bitbucket.org/petrsimon/geolocationtcp/downloads/GeolocationTCP-r6.exe). You might also need [GeolocationTCP.exe.config](https://bitbucket.org/petrsimon/geolocationtcp/downloads/GeolocationTCP.exe.config). Place it in the same directory as `GeolocationTCP-r6.exe`. Start the program.
 2. Open OpenCPN, go to Options > Connections and create new Network connection with Adress 127.0.0.1 and DataPort 15555.
 
 ## Note
