@@ -1,7 +1,5 @@
 # Overview
-Simple TCP server which interfaces the Windows 8 Location API and serves NMEA sentences. Intended for use with [OpenCPN](http://opencpn.org).
-
-I have tested the server on my shiny new Asus VivoTab Smart.
+GeolocationTCP creates a simple TCP server which interfaces the Windows 8 Location API and serves NMEA sentences. Intended for use with [OpenCPN](http://opencpn.org).
 
 Feedback is most welcome.
 
@@ -12,7 +10,8 @@ Feedback is most welcome.
 ## Note
 - Windows will try to locate your position using either of these sources: Cellular, Wifi, Satellite. Thus if you want to see what you get offshore, turn off your cellular and wifi connections.
 - The frequency of location updates might be quite irregular. 
-- If your position is off, try `Settings > User Interface` and set `Show Lat/Long as` to `Degrees, Minutes, Seconds`.
+- If your position in OpenCPN is off, try `Settings > User Interface` and set `Show Lat/Long as` to `Degrees, Minutes, Seconds`.
+- Windows 10 users: GeolocationTCP does not recognize the correct GNSS status when started or when switching the airline mode. Swipe to open the Action center and tap the Location tile to disable location services. Then tap it again. GeolocationTCP should be able to pickup the GNSS status now.
 
 
 # Building
