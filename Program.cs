@@ -17,19 +17,7 @@ namespace GeolocationTCP
         [STAThread]
         static void Main()
         {
-            string disclaimer = "Geolocation TCP is distributed in the hope that it will be useful, "+
-            "but WITHOUT ANY WARRANTY; without even the implied " +
-            "warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE." + Environment.NewLine +
-            "See the GNU General Public License for more details." + Environment.NewLine +
-            "Geolocation TCP must only be used in conjunction with approved paper charts "+
-            "and traditional methods of navigation." + Environment.NewLine + Environment.NewLine +
-            "DO NOT rely upon Geolocation TCP for safety of life or property.";
-
-            DialogResult res = MessageBox.Show(disclaimer, "Warning", MessageBoxButtons.OKCancel);
-            if (res == DialogResult.Cancel)
-            {
-                return;
-            }
+            
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

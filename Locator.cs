@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Windows.Devices.Geolocation;
 using Windows.Foundation;
 
@@ -75,7 +71,7 @@ namespace GeolocationTCP
         }
 
         public void UpdateUI(DateTimeOffset datetime, string nmea, double lat, double lon, 
-            string speed, string accuracy)
+            string speed, string accuracy, PositionSource source)
         {
             //try
             //{
@@ -94,6 +90,8 @@ namespace GeolocationTCP
             window.SetSpeed(speed);
             window.SetDatetime(datetime.ToString());
             window.SetAccuracy(accuracy+"m");
+
+            window.SetSource(source.ToString());
             //}
             //catch (Exception ex) {
             //    throw ex;
@@ -107,13 +105,14 @@ namespace GeolocationTCP
             {
                 positionChangedHandler = (geo, e) =>
                 {
-
+                    
                     Geoposition pos = e.Position;
+                   
                     DateTimeOffset datetime = pos.Coordinate.Timestamp;
                     String time = pos.Coordinate.Timestamp.UtcDateTime.ToString("hhmmss");
                     String date = pos.Coordinate.Timestamp.UtcDateTime.ToString("dMMyy");
-                    double lat = (double)pos.Coordinate.Latitude;
-                    double lon = (double)pos.Coordinate.Longitude;
+                    double lat = (double)pos.Coordinate.Point.Position.Latitude;
+                    double lon = (double)pos.Coordinate.Point.Position.Longitude;
                     string accuracy = pos.Coordinate.Accuracy.ToString();
 
                     String heading = "";
@@ -128,7 +127,7 @@ namespace GeolocationTCP
                         double kn = (double) pos.Coordinate.Speed / 0.514444;
                         speed = kn.ToString("00.00");
                     }
-
+                    
                     String coords = decimalToNMEA(lat, lon);
 
                     String sentence = String.Format("$GPRMC,{0},A,{1},{2},{3},{4},,",
@@ -137,7 +136,9 @@ namespace GeolocationTCP
                     //Console.WriteLine("Sent NMEA sentence {0}", nmea);
 
                     Report(nmea);
-                    UpdateUI(datetime, nmea, lat, lon, speed, accuracy);
+
+                    PositionSource source = e.Position.Coordinate.PositionSource;
+                    UpdateUI(datetime, nmea, lat, lon, speed, accuracy, source);
                     
                 };
             }

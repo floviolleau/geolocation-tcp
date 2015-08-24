@@ -24,6 +24,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.labelAccuracy = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.labelLon = new System.Windows.Forms.Label();
@@ -34,19 +35,20 @@
             this.labelSpeed = new System.Windows.Forms.Label();
             this.labelStatus = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.labelSource = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // locationLog
             // 
-            this.locationLog.Location = new System.Drawing.Point(12, 229);
+            this.locationLog.Location = new System.Drawing.Point(10, 224);
             this.locationLog.Multiline = true;
             this.locationLog.Name = "locationLog";
             this.locationLog.ReadOnly = true;
             this.locationLog.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.locationLog.Size = new System.Drawing.Size(347, 98);
+            this.locationLog.Size = new System.Drawing.Size(356, 98);
             this.locationLog.TabIndex = 0;
             this.locationLog.WordWrap = false;
             // 
@@ -58,9 +60,9 @@
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Location = new System.Drawing.Point(12, 12);
+            this.groupBox1.Location = new System.Drawing.Point(10, 7);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(347, 50);
+            this.groupBox1.Size = new System.Drawing.Size(356, 50);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Network settings";
@@ -135,13 +137,24 @@
             this.groupBox2.Controls.Add(this.label11);
             this.groupBox2.Controls.Add(this.labelDate);
             this.groupBox2.Controls.Add(this.labelSpeed);
-            this.groupBox2.Location = new System.Drawing.Point(12, 68);
+            this.groupBox2.Location = new System.Drawing.Point(10, 63);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(347, 155);
+            this.groupBox2.Size = new System.Drawing.Size(356, 155);
             this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Last location update";
             this.groupBox2.Enter += new System.EventHandler(this.groupBox2_Enter);
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(223, 132);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(56, 20);
+            this.label1.TabIndex = 13;
+            this.label1.Text = "Speed";
             // 
             // labelAccuracy
             // 
@@ -218,7 +231,7 @@
             this.labelSpeed.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.labelSpeed.AutoSize = true;
             this.labelSpeed.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelSpeed.Location = new System.Drawing.Point(258, 132);
+            this.labelSpeed.Location = new System.Drawing.Point(285, 132);
             this.labelSpeed.Name = "labelSpeed";
             this.labelSpeed.Size = new System.Drawing.Size(31, 20);
             this.labelSpeed.TabIndex = 5;
@@ -228,7 +241,7 @@
             // 
             this.labelStatus.AutoSize = true;
             this.labelStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelStatus.Location = new System.Drawing.Point(86, 330);
+            this.labelStatus.Location = new System.Drawing.Point(84, 325);
             this.labelStatus.Name = "labelStatus";
             this.labelStatus.Size = new System.Drawing.Size(24, 13);
             this.labelStatus.TabIndex = 7;
@@ -237,29 +250,40 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(12, 330);
+            this.label9.Location = new System.Drawing.Point(10, 325);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(71, 13);
             this.label9.TabIndex = 6;
             this.label9.Text = "GNSS status:";
             // 
-            // label1
+            // label10
             // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(206, 132);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(56, 20);
-            this.label1.TabIndex = 13;
-            this.label1.Text = "Speed";
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(205, 325);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(75, 13);
+            this.label10.TabIndex = 8;
+            this.label10.Text = "GNSS source:";
+            // 
+            // labelSource
+            // 
+            this.labelSource.AutoSize = true;
+            this.labelSource.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelSource.Location = new System.Drawing.Point(286, 325);
+            this.labelSource.MinimumSize = new System.Drawing.Size(80, 0);
+            this.labelSource.Name = "labelSource";
+            this.labelSource.Size = new System.Drawing.Size(80, 13);
+            this.labelSource.TabIndex = 9;
+            this.labelSource.Text = "n/a";
             // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(371, 349);
+            this.ClientSize = new System.Drawing.Size(376, 347);
+            this.Controls.Add(this.labelSource);
+            this.Controls.Add(this.label10);
             this.Controls.Add(this.labelStatus);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.label9);
@@ -301,5 +325,7 @@
         private System.Windows.Forms.Label labelAccuracy;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label labelSource;
     }
 }

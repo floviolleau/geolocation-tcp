@@ -206,6 +206,19 @@ namespace GeolocationTCP
             }
         }
 
+        internal void SetSource(string text)
+        {
+            if (this.labelSource.InvokeRequired)
+            {
+                SetTextCallback d = new SetTextCallback(SetSource);
+                this.Invoke(d, new object[] { text });
+            }
+            else
+            {
+                this.labelSource.Text = text;
+            }
+        }
+
 
         internal void SetAccuracy(string text)
         {
@@ -220,7 +233,7 @@ namespace GeolocationTCP
             }
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private void label12_Click(object sender, EventArgs e)
         {
 
         }
