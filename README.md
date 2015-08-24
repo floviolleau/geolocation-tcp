@@ -4,7 +4,7 @@ GeolocationTCP creates a simple TCP server which interfaces the Windows 8 Locati
 Feedback is most welcome.
 
 # How to use
-1. Download [GeolocationTCP-r7.exe](https://bitbucket.org/petrsimon/geolocationtcp/downloads/GeolocationTCP-r7.exe) and start the program.
+1. Download [GeolocationTCP-r8.exe](https://bitbucket.org/petrsimon/geolocationtcp/downloads/GeolocationTCP-r8.exe) and start the program.
 2. Open OpenCPN, go to Options > Connections and create new Network connection with Adress 127.0.0.1 and DataPort 15555.
 
 ## Note
