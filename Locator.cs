@@ -18,7 +18,8 @@ namespace GeolocationTCP
         {
             window = w;
             loc = new Geolocator();
-            loc.DesiredAccuracy = PositionAccuracy.Default;
+            loc.DesiredAccuracy = PositionAccuracy.High;
+            loc.DesiredAccuracyInMeters = 10;
             loc.ReportInterval = 500;
             StartTracking();
         }
@@ -100,7 +101,7 @@ namespace GeolocationTCP
 
         public void StartTracking()
         {
-
+            window.SetStatus(loc.LocationStatus.ToString());
             if (positionChangedHandler == null)
             {
                 positionChangedHandler = (geo, e) =>
@@ -115,13 +116,13 @@ namespace GeolocationTCP
                     double lon = (double)pos.Coordinate.Point.Position.Longitude;
                     string accuracy = pos.Coordinate.Accuracy.ToString();
 
-                    String heading = "";
+                    String heading = "0.0";
                     if (pos.Coordinate.Heading != null)
                     {
                         heading = pos.Coordinate.Heading.Value.ToString("00.00");
                     }
-
-                    String speed = "";
+                    
+                    String speed = "0.0";
                     if (pos.Coordinate.Speed != null)
                     {
                         double kn = (double) pos.Coordinate.Speed / 0.514444;
@@ -130,7 +131,7 @@ namespace GeolocationTCP
                     
                     String coords = decimalToNMEA(lat, lon);
 
-                    String sentence = String.Format("$GPRMC,{0},A,{1},{2},{3},{4},,",
+                    String sentence = String.Format("$GPRMC,{0},A,{1},{2},{3},{4},",
                         time, coords, speed, heading, date);
                     String nmea = sentence + "*" + getChecksum(sentence);
                     //Console.WriteLine("Sent NMEA sentence {0}", nmea);
@@ -155,6 +156,7 @@ namespace GeolocationTCP
                     }
                     catch (Exception ex)
                     {
+                        Console.WriteLine(ex);
                     }
                 };
             }
