@@ -1,7 +1,7 @@
 # Overview
 GeolocationTCP creates a simple TCP server which interfaces the Windows 8 Location API and serves NMEA sentences. Intended for use with [OpenCPN](http://opencpn.org).
 
-Feedback is most welcome.
+The software is provided "as-is", no warranties. Use at our own risk!
 
 # How to use
 1. Download [GeolocationTCP-r8.exe](https://bitbucket.org/petrsimon/geolocationtcp/downloads/GeolocationTCP-r8.exe) and start the program.
