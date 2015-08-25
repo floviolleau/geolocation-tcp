@@ -46,7 +46,6 @@ namespace GeolocationTCP
 
         public String decimalToNMEA(double lat, double lon)
         {
-            NumberFormatInfo nfi = new CultureInfo("en-US", false).NumberFormat;
             string nmea = "";
             double lata = Math.Abs(lat);
             double latd = Math.Truncate(lata);
@@ -56,8 +55,14 @@ namespace GeolocationTCP
             double lngd = Math.Truncate(lnga);
             double lngm = (lnga - lngd) * 60;
             string lngh = lon > 0.0 ? "E" : "W";
-            nmea += latd.ToString("00") + latm.ToString("00.00", nfi) + "," + lath + ",";
-            nmea += lngd.ToString("000") + lngm.ToString("00.00", nfi) + "," + lngh;
+
+            nmea += latd.ToString("00") + 
+                latm.ToString("00.00", CultureInfo.InvariantCulture) + "," + 
+                lath + ",";
+            nmea += lngd.ToString("000") + 
+                lngm.ToString("00.00", CultureInfo.InvariantCulture) + "," + 
+                lngh;
+
             return nmea;
         }
 
@@ -133,7 +138,7 @@ namespace GeolocationTCP
 
                     String sentence = String.Format("$GPRMC,{0},A,{1},{2},{3},{4},,",
                         time, coords, speed, heading, date);
-                    String nmea = sentence + "*" + getChecksum(sentence);
+                   String nmea = sentence + "*" + getChecksum(sentence);
                     //Console.WriteLine("Sent NMEA sentence {0}", nmea);
 
                     Report(nmea);
