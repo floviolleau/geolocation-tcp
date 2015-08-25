@@ -131,7 +131,7 @@ namespace GeolocationTCP
                     
                     String coords = decimalToNMEA(lat, lon);
 
-                    String sentence = String.Format("$GPRMC,{0},A,{1},{2},{3},{4},",
+                    String sentence = String.Format("$GPRMC,{0},A,{1},{2},{3},{4},,",
                         time, coords, speed, heading, date);
                     String nmea = sentence + "*" + getChecksum(sentence);
                     //Console.WriteLine("Sent NMEA sentence {0}", nmea);
