@@ -21,4 +21,4 @@ GPL v2.0
 # Credits
 1. [edrazy](http://www.codeproject.com/Articles/13232/A-very-basic-TCP-server-written-in-C)
 2. [kalmangabriel](http://forum.gpsgate.com/topic.asp?TOPIC_ID=13491)
-3. [Petr Simon](petr.simon@gmail.com)
+3. [Petr Simon](maiilto:petr.simon@gmail.com)
