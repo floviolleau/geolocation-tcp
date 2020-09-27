@@ -1,6 +1,3 @@
-NOT MAINTAINED, sorry
-
-
 # Overview
 GeolocationTCP creates a simple TCP server which interfaces the Windows 8 Location API and serves NMEA sentences. Intended for use with [OpenCPN](http://opencpn.org).
 
